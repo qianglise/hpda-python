@@ -20,25 +20,25 @@ Parallel Computing
    - 40 min exercises
 
 
+Modes of parallelism
+--------------------
+
 The performance of a single CPU core has stagnated over the last ten years
-and most of the speed-up in modern CPUs is coming from using multiple
-CPU cores, i.e. parallel processing. Parallel processing is normally based
-either on multiple threads or multiple processes: 
+and most of the speed-up in scientific computing is coming from using
+multiple CPU cores, i.e. parallel processing. Parallel processing can be
+roughly catergorized into the following modes: 
 
 - **Shared memory parallelism (multithreading):** 
  
-  - Parallel threads do separate work and communicate via the same memory and write to shared variables.
-  - Multiple threads in a single Python program cannot execute at the same time (see **global interpreter lock** below)
-  - Running multiple threads in Python is *only effective for certain I/O-bound tasks*
-  - External libraries in other languages (e.g. C) which are called from Python can still use multithreading
+  - Parallel threads do separate work
+  - Different threads communicate via the same memory and write to shared variables
 
-- **Distributed memory parallelism (multiprocessing):** Different processes manage their own memory segments and 
-  share data by communicating (e.g. passing messages using Message Passing Interface) as needed.
 
-  - A process can contain one or more threads
-  - Two processes can run on different CPU cores and different computers
-  - Processes have more overhead than threads (creating and destroying processes takes more time)
-  - Running multiple processes is *only effective for compute-bound tasks*
+- **Distributed memory parallelism (multiprocessing):** 
+
+  - Different processes manage their own memory segments
+  - Different processes share data by communicating e.g. using Message Passing Interface when needed
+
 
 .. note::
 
@@ -80,17 +80,33 @@ The Global Interpreter Lock (GIL)
 The designers of the Python language made the choice
 that **only one thread in a process can run actual Python code**
 by using the so-called **global interpreter lock (GIL)**.
-This means that approaches that may work in other languages (C, C++, Fortran),
-may not work in Python without being a bit careful.
-The reason GIL is needed is because part of the Python implementation related to
-the memory management is not thread-safe.
-At first glance, this is bad for parallelism.  But one can avoid GIL through the folowing:
+This means that multiple threads executing Python code at the same time is prevented,
+and therefore it is bad for parallelism. The main reason is that
+part of the Python implementation related to the memory management is not thread-safe.
+Moreover, library developers often care a lot about performance and will design APIs
+that support working around the GIL. These workaround frequently lead to APIs
+that are more difficult to use. Consequently, users of these APIs may experience
+the GIL as a usability issue and not just a performance issue.
 
-- External libraries (NumPy, SciPy, Pandas, etc), written in C or other
-  languages, can release the lock and run multi-threaded.  
-- Most input/output tasks release the GIL.
-- There are several Python libraries that side-step the GIL, e.g. by using 
-  *multiprocessing* instead of *threading*.
+Starting with the 3.13 release, CPython has support for a build of Python
+called free threading where the global interpreter lock (GIL) is disabled.
+Free-threaded execution allows for full utilization of the available
+processing power by running threads in parallel on available CPU cores.
+While not all software will benefit from this automatically,
+programs designed with threading in mind will run faster on multi-core hardware.
+
+.. note::
+
+   The free-threaded build of CPython aims to provide similar thread-safety behavior
+   at the Python level to the default GIL-enabled build. Built-in types like
+   `dict`, `list`, and `set` use internal locks to protect against concurrent modifications
+   in ways that behave similarly to the GIL. However, Python has not historically
+   guaranteed specific behavior for concurrent modifications to these built-in types,
+   so this should be treated as a description of the current implementation,
+   not a guarantee of current or future behavior. It’s recommended to use the
+   `threading.Lock` or other synchronization primitives instead of relying on
+   the internal locks of built-in types, when possible.
+
 
 
 Multithreading
