@@ -51,12 +51,6 @@ roughly catergorized into the following modes:
      - Convolutional neural networks
      - Applying same model on multiple datasets
 
-   **GPU computing**: This framwork takes advantages of the massively parallel compute units available in modern GPUs. 
-   It is ideal when you need a large number of simple arithmetic operations
-
-   **Distributed computing (Spark, Dask)**: Master-worker parallelism. Master builds a graph of task dependencies and schedules to execute tasks in the appropriate order.
-   In the next episode we will look at `Dask <https://dask.org/>`__, an array model extension and task scheduler, 
-   which combines multiprocessing with (embarrassingly) parallel workflows and "lazy" execution.
 
 In the Python world, it is common to see the word `concurrency` denoting any type of simultaneous 
 processing, including *threads*, *tasks* and *processes*. 
@@ -97,15 +91,25 @@ programs designed with threading in mind will run faster on multi-core hardware.
 
 .. note::
 
+   While the performance gains are exciting, moving to a GIL-free world requires
+   a shift in mindset and an awareness of the new challenges. The biggest hurdle
+   for the adoption of free-threaded Python is the vast ecosystem of existing packages. 
+   Most pure Python code that is already thread-safe should work without modification.
+   However, many C extensions were built with the assumption that the GIL exists,
+   implicitly protecting them from certain types of race conditions. Running these
+   in a free-threaded environment can lead to crashes and data corruption.
+   
    The free-threaded build of CPython aims to provide similar thread-safety behavior
-   at the Python level to the default GIL-enabled build. Built-in types like
-   `dict`, `list`, and `set` use internal locks to protect against concurrent modifications
-   in ways that behave similarly to the GIL. However, Python has not historically
+   to the default GIL-enabled build. Built-in types like `dict`, `list`, and `set`
+   use internal locks to protect against concurrent modifications in ways that
+   behave similarly to the GIL. However, Python has not historically
    guaranteed specific behavior for concurrent modifications to these built-in types,
    so this should be treated as a description of the current implementation,
-   not a guarantee of current or future behavior. It’s recommended to use the
-   `threading.Lock` or other synchronization primitives instead of relying on
-   the internal locks of built-in types, when possible.
+   not a guarantee of current or future behavior. It's recommended to explicitly use the
+   locking mechanisms (e.g. `threading.Lock` or other synchronization primitives)
+   instead of relying on the internal locks of built-in types, whenever possible
+   to protect shared, mutable state in the code to ensure logical correctness.
+   Race conditions that once were theoretical may happen now.
 
 
 
@@ -118,28 +122,6 @@ However, multithreading is still relevant in two situations:
 
 - External libraries written in non-Python languages can take advantage of multithreading 
 - Multithreading can be useful for running *multiple I/O-bound tasks simultaneously*.
-
-
-Multithreaded libraries
-^^^^^^^^^^^^^^^^^^^^^^^
-
-NumPy and SciPy are built on external libraries such as LAPACK, FFTW, BLAS, 
-which provide optimized routines for linear algebra, Fourier transforms etc.
-These libraries are written in C, C++ or Fortran and are thus not limited 
-by the GIL, so they typically support actual multihreading during the execution.
-It might be a good idea to use multiple threads during calculations 
-like matrix operations or frequency analysis.
-
-Depending on the configuration, NumPy will often use multiple threads by default, 
-and one can use the environment variable ``OMP_NUM_THREADS`` to set the number 
-of threads manually by executing the following command in a terminal:
-
-.. code-block:: console
-
-   $ export OMP_NUM_THREADS=<N>
-
-After setting this environment variable we continue as usual 
-and multithreading will be turned on.
 
 
 Multithreaded I/O
