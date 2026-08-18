@@ -4,9 +4,9 @@ import requests
 
 # Configuration
 MAX_THREADS = 3  # Adjust based on your connection speed and server limits
-DOWNLOAD_DIR = "./downloads"
+DOWNLOAD_DIR = "./downloads" # Directory where to put the files
 
-# Sample files to download (Replace these URLs with your actual file targets)
+# Sample files to download
 FILES_TO_DOWNLOAD = [
     {
         "url": "https://nomads.ncep.noaa.gov/pub/data/nccf/com/gfs/prod/gfs.20260817/00/atmos",
@@ -31,30 +31,6 @@ FILES_TO_DOWNLOAD = [
     {
         "url": "https://nomads.ncep.noaa.gov/pub/data/nccf/com/gfs/prod/gfs.20260817/00/atmos",
         "filename": "gfs.t00z.pgrb2.0p25.f015",
-    },
-        {
-        "url": "https://nomads.ncep.noaa.gov/pub/data/nccf/com/gfs/prod/gfs.20260817/00/atmos",
-        "filename": "gfs.t00z.pgrb2.0p25.f018",
-    },
-    {
-        "url": "https://nomads.ncep.noaa.gov/pub/data/nccf/com/gfs/prod/gfs.20260817/00/atmos",
-        "filename": "gfs.t00z.pgrb2.0p25.f021",
-    },
-    {
-        "url": "https://nomads.ncep.noaa.gov/pub/data/nccf/com/gfs/prod/gfs.20260817/00/atmos",
-        "filename": "gfs.t00z.pgrb2.0p25.f024",
-    },
-        {
-        "url": "https://nomads.ncep.noaa.gov/pub/data/nccf/com/gfs/prod/gfs.20260817/00/atmos",
-        "filename": "gfs.t00z.pgrb2.0p25.f027",
-    },
-    {
-        "url": "https://nomads.ncep.noaa.gov/pub/data/nccf/com/gfs/prod/gfs.20260817/00/atmos",
-        "filename": "gfs.t00z.pgrb2.0p25.f030",
-    },
-    {
-        "url": "https://nomads.ncep.noaa.gov/pub/data/nccf/com/gfs/prod/gfs.20260817/00/atmos",
-        "filename": "gfs.t00z.pgrb2.0p25.f033",
     },
 ]
 
