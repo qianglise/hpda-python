@@ -246,6 +246,16 @@ Exercises
       :language: python
 
 
+
+.. exercise:: Database
+
+   In this exercise, we will simultaneously insert into and read from a DuckDB database
+   across multiple Python threads.
+
+   .. literalinclude:: example/duckdb_mt.py
+      :language: python
+
+
 .. exercise:: I/O-bound vs CPU-bound
 
    In this exercise, we will simulate an I/O-bound process uing the :meth:`sleep` function. 
