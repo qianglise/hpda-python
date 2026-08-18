@@ -233,24 +233,6 @@ and practice using ``multiprocessing`` pools of processes.
 Exercises
 ---------
 
-.. exercise:: Multithreading NumPy 
-
-   Here is a piece of code which does a symmetrical matrix inversion of size 4000 by 4000.
-   To run it, we can save it in a file named `omp_test.py` or download from :download:`here <example/omp_test.py>`.
-
-   .. literalinclude:: example/omp_test.py
-      :language: python
-
-   Let us test it with 1 and 4 threads:
-
-   .. code-block:: console
-
-      $ export OMP_NUM_THREADS=1
-      $ python omp_test.py
-
-      $ export OMP_NUM_THREADS=4
-      $ python omp_test.py
-
 .. exercise:: I/O-bound vs CPU-bound
 
    In this exercise, we will simulate an I/O-bound process uing the :meth:`sleep` function. 
