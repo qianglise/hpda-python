@@ -1,0 +1,1008 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Parallel Computing &mdash; HPDA-Python  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx_lesson.css?v=e9df6548" />
+      <link rel="stylesheet" type="text/css" href="../_static/term_role_formatting.css?v=4194e21c" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx_rtd_theme_ext_color_contrast.css?v=8e8ea19f" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster.custom.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster.bundle.min.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-shadow.min.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-punk.min.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-noir.min.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-light.min.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-borderless.min.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/micromodal.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/sphinx_rtd_theme.css?v=3234e928" />
+      <link rel="stylesheet" type="text/css" href="../_static/tabs.css?v=a5c4661c" />
+      <link rel="stylesheet" type="text/css" href="../_static/overrides.css?v=c88db32d" />
+
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=187304be"></script>
+      <script src="../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=35a8b989"></script>
+      <script src="../_static/minipres.js?v=a0d29692"></script>
+      <script src="../_static/js/hoverxref.js"></script>
+      <script src="../_static/js/tooltipster.bundle.min.js"></script>
+      <script src="../_static/js/micromodal.min.js"></script>
+      <script>let toggleHintShow = 'Click to show';</script>
+      <script>let toggleHintHide = 'Click to hide';</script>
+      <script>let toggleOpenOnPrint = 'true';</script>
+      <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+      <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+      <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      <script src="../_static/tabs.js?v=3030b3cb"></script>
+      <script data-domain="enccs.github.io/hpda-python" defer="defer" src="https://plausible.io/js/script.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex/" />
+    <link rel="search" title="Search" href="../search/" />
+    <link rel="next" title="Benchmarking, profiling and optimizing" href="../optimization/" />
+    <link rel="prev" title="Efficient Array Computing" href="../stack/" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../" class="icon icon-home">
+            HPDA-Python
+              <img src="../_static/ENCCS.jpg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search/" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Preparation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../setup/">Installation and LUMI Access</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">The lesson</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../motivation/">Motivation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scientific-data/">Scientific Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../stack/">Efficient Array Computing</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Parallel Computing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#modes-of-parallelism">Modes of parallelism</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#the-global-interpreter-lock-gil">The Global Interpreter Lock (GIL)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#multithreading">Multithreading</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#multiprocessing">Multiprocessing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#multiple-arguments">Multiple arguments</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#exercises">Exercises</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#see-also">See also</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../optimization/">Benchmarking, profiling and optimizing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../performance-boosting/">Performance Boosting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dask/">Dask for Scalable Analytics</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Optional material</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../setup-eurohpc/">Installation in EuroHPC Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pandas-extra/">Pandas (II)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../GPU-computing/">GPU Computing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../parallel-computing_opt/">Parallel Computing (II)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../optimization_opt/">Benchmarking, profiling and optimizing (II)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dask_opt/">Dask (II)</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../guide/">Instructor’s Guide</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../">HPDA-Python</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Parallel Computing</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/ENCCS/hpda-python/blob/main/content/parallel-computing.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="parallel-computing">
+<span id="id1"></span><h1>Parallel Computing<a class="headerlink" href="#parallel-computing" title="Link to this heading"></a></h1>
+<div class="admonition-questions questions admonition" id="questions-0">
+<p class="admonition-title">Questions</p>
+<ul class="simple">
+<li><p>What is the Global Interpreter Lock in Python?</p></li>
+<li><p>How can Python code be parallelised?</p></li>
+</ul>
+</div>
+<div class="admonition-objectives objectives admonition" id="objectives-0">
+<p class="admonition-title">Objectives</p>
+<ul class="simple">
+<li><p>Become familiar with different types of parallelism</p></li>
+<li><p>Learn the basics of parallel workflows, multiprocessing and distributed memory parallelism</p></li>
+</ul>
+</div>
+<div class="admonition-instructor-note instructor-note admonition" id="instructor-note-0">
+<p class="admonition-title">Instructor note</p>
+<ul class="simple">
+<li><p>40 min teaching/type-along</p></li>
+<li><p>40 min exercises</p></li>
+</ul>
+</div>
+<section id="modes-of-parallelism">
+<h2>Modes of parallelism<a class="headerlink" href="#modes-of-parallelism" title="Link to this heading"></a></h2>
+<p>The performance of a single CPU core has stagnated over the last ten years
+and most of the speed-up in scientific computing is coming from using
+multiple CPU cores, i.e. parallel processing. Parallel processing can be
+roughly catergorized into the following modes:</p>
+<ul class="simple">
+<li><p><strong>Shared memory parallelism (multithreading):</strong></p>
+<ul>
+<li><p>Parallel threads do separate work</p></li>
+<li><p>Different threads communicate via the same memory and write to shared variables</p></li>
+</ul>
+</li>
+<li><p><strong>Distributed memory parallelism (multiprocessing):</strong></p>
+<ul>
+<li><p>Different processes manage their own memory segments and python interpreter</p></li>
+<li><p>Different processes share data by communicating e.g. using Message Passing Interface when needed</p></li>
+</ul>
+</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>“Embarrassingly” parallel</strong>: If you can run multiple instances of a program and do not need to synchronize/communicate with other instances,
+i.e. the problem at hand can be easily decomposed into independent tasks or datasets and there is no need to control access to shared resources,
+it is known as an embarrassingly parallel program. A few examples are listed here:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Monte Carlo analysis</p></li>
+<li><p>Ensemble calculations of numerical weather prediction</p></li>
+<li><p>Discrete Fourier transform</p></li>
+<li><p>Convolutional neural networks</p></li>
+<li><p>Applying same model on multiple datasets</p></li>
+</ul>
+</div></blockquote>
+</div>
+<p>In the Python world, it is common to see the word <cite>concurrency</cite> denoting any type of simultaneous
+processing, including <em>threads</em>, <em>tasks</em> and <em>processes</em>.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Concurrent tasks can be executed in any order but with the same final results</p></li>
+<li><p>Concurrent tasks can be but need not to be executed in parallel</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">concurrent.futures</span></code> module provides implementation of thread and process-based executors for managing resources pools for running concurrent tasks</p></li>
+<li><p>Concurrency is difficult: Race condition and Deadlock may arise in concurrent programs</p></li>
+</ul>
+</div></blockquote>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Parallel programming requires that we adopt a different mental model compared to serial programming.
+Many things can go wrong and one can get unexpected results or difficult-to-debug
+problems. It is important to understand the possible pitfalls before embarking
+on code parallelisation. For an entertaining take on this, see
+<a class="reference external" href="https://www.youtube.com/watch?v=Bv25Dwe84g0">Raymond Hettinger’s PyCon2016 presentation</a>.</p>
+</div>
+</section>
+<section id="the-global-interpreter-lock-gil">
+<h2>The Global Interpreter Lock (GIL)<a class="headerlink" href="#the-global-interpreter-lock-gil" title="Link to this heading"></a></h2>
+<p>The designers of the Python language made the choice
+that <strong>only one thread in a process can run actual Python code</strong>
+by using the so-called <strong>global interpreter lock (GIL)</strong>.
+This means that multiple threads executing Python code at the same time is prevented,
+and therefore it is bad for parallelism. The main reason is that
+part of the Python implementation related to the memory management is not thread-safe.
+Moreover, library developers often care a lot about performance and will design APIs
+that support working around the GIL. These workaround frequently lead to APIs
+that are more difficult to use. Consequently, users of these APIs may experience
+the GIL as a usability issue and not just a performance issue.</p>
+<p>Starting with the 3.13 release, CPython has support for a build of Python
+called free threading where the global interpreter lock (GIL) is disabled.
+Free-threaded execution allows for full utilization of the available
+processing power by running threads in parallel on available CPU cores.
+While not all software will benefit from this automatically,
+programs designed with threading in mind will run faster on multi-core hardware.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Work is underway across the ecosystem to update packages to support
+free-threaded Python alongside improvements to thread safety guarantees,
+testing, and documentation.</p>
+<p>Most pure Python code that is already thread-safe should work without modification.
+However, some third-party packages, in particular those extension modules using
+Python’s C API may not be ready for use in a free-threaded build, and will re-enable the GIL.
+Running these in a free-threaded environment can lead to crashes and data corruption.</p>
+<p>The free-threaded build of CPython aims to provide similar thread-safety behavior
+to the default GIL-enabled build. Built-in types like <cite>dict</cite>, <cite>list</cite>, and <cite>set</cite>
+use internal locks to protect against concurrent modifications in ways that
+behave similarly to the GIL. However, there is no guarantee of consistent
+current or future behavior of buit-in types. It’s recommended to explicitly use the
+locking mechanisms (e.g. <cite>threading.Lock</cite> or other synchronization primitives)
+instead of relying on the internal locks of built-in types, whenever possible
+to protect shared, mutable state in the code to ensure logical correctness.
+Race conditions that once were theoretical may happen now.</p>
+</div>
+</section>
+<section id="multithreading">
+<h2>Multithreading<a class="headerlink" href="#multithreading" title="Link to this heading"></a></h2>
+<p>The <a class="reference external" href="https://docs.python.org/dev/library/threading.html#">threading library</a>
+provides an API for creating and working with threads. The simplest approach to
+create and manage threads is to use the <code class="docutils literal notranslate"><span class="pre">ThreadPoolExecutor</span></code> class from <code class="docutils literal notranslate"><span class="pre">concurrent.futures</span></code> module.
+An example use case could be to download data from multiple websites using
+multiple threads:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">concurrent.futures</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">download_all_sites</span><span class="p">(</span><span class="n">sites</span><span class="p">):</span>
+    <span class="k">with</span> <span class="n">concurrent</span><span class="o">.</span><span class="n">futures</span><span class="o">.</span><span class="n">ThreadPoolExecutor</span><span class="p">(</span><span class="n">max_workers</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span> <span class="k">as</span> <span class="n">executor</span><span class="p">:</span>
+        <span class="n">executor</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">my_download_function</span><span class="p">,</span> <span class="n">sites</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The speedup gained from multithreading I/O bound problems can be understood from the following image.</p>
+<figure class="align-center" id="id3">
+<a class="reference internal image-reference" href="../_images/Threading.png"><img alt="../_images/Threading.png" src="../_images/Threading.png" style="width: 598.5px; height: 268.5px;" />
+</a>
+<figcaption>
+<p><span class="caption-text">From <a class="reference external" href="https://realpython.com/">https://realpython.com/</a>, distributed via a Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported licence</span><a class="headerlink" href="#id3" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<p>Further details on threading in Python can be found in the <strong>See also</strong> section below.</p>
+</section>
+<section id="multiprocessing">
+<h2>Multiprocessing<a class="headerlink" href="#multiprocessing" title="Link to this heading"></a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">multiprocessing</span></code> module in Python supports spawning processes using an API
+similar to the <code class="docutils literal notranslate"><span class="pre">threading</span></code> module. It effectively side-steps the GIL by using
+<em>subprocesses</em> instead of threads, where each subprocess is an independent Python
+process. One of the simplest ways to use <code class="docutils literal notranslate"><span class="pre">multiprocessing</span></code> is via <code class="docutils literal notranslate"><span class="pre">Pool</span></code> objects and
+the parallel <code class="xref py py-meth docutils literal notranslate"><span class="pre">Pool.map()</span></code> function, similarly to what we saw for multithreading above.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code class="docutils literal notranslate"><span class="pre">concurrent.futures.ProcessPoolExecutor</span></code> is actually a wrapper for
+<code class="docutils literal notranslate"><span class="pre">multiprocessing.Pool</span></code> to unify the threading and process interfaces.</p>
+</div>
+<section id="multiple-arguments">
+<h3>Multiple arguments<a class="headerlink" href="#multiple-arguments" title="Link to this heading"></a></h3>
+<p>For functions that take multiple arguments one can instead use the <code class="xref py py-meth docutils literal notranslate"><span class="pre">Pool.starmap()</span></code>
+function, and there are other options as well, see below:</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-0-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-0-0-0" name="0-0" role="tab" tabindex="0"><code class="docutils literal notranslate"><span class="pre">pool.starmap</span></code></button><button aria-controls="panel-0-0-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-0-0-1" name="0-1" role="tab" tabindex="-1">function adapter</button><button aria-controls="panel-0-0-2" aria-selected="false" class="sphinx-tabs-tab" id="tab-0-0-2" name="0-2" role="tab" tabindex="-1">multiple argument iterables</button></div><div aria-labelledby="tab-0-0-0" class="sphinx-tabs-panel" id="panel-0-0-0" name="0-0" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">multiprocessing</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">mp</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">power_n</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">x</span> <span class="o">**</span> <span class="n">n</span>
+
+<span class="hll"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+</span>    <span class="k">with</span> <span class="n">mp</span><span class="o">.</span><span class="n">Pool</span><span class="p">(</span><span class="n">processes</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span> <span class="k">as</span> <span class="n">pool</span><span class="p">:</span>
+<span class="hll">        <span class="n">res</span> <span class="o">=</span> <span class="n">pool</span><span class="o">.</span><span class="n">starmap</span><span class="p">(</span><span class="n">power_n</span><span class="p">,</span> <span class="p">[(</span><span class="n">x</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">20</span><span class="p">)])</span>
+</span>    <span class="nb">print</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-0-0-1" class="sphinx-tabs-panel" hidden="true" id="panel-0-0-1" name="0-1" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">concurrent.futures</span><span class="w"> </span><span class="kn">import</span> <span class="n">ProcessPoolExecutor</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">power_n</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">x</span> <span class="o">**</span> <span class="n">n</span>
+
+<span class="hll"><span class="k">def</span><span class="w"> </span><span class="nf">f_</span><span class="p">(</span><span class="n">args</span><span class="p">):</span>
+</span><span class="hll">    <span class="k">return</span> <span class="n">power_n</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
+</span>
+<span class="n">xs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">chunks</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array_split</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">xs</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">//</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="k">with</span> <span class="n">ProcessPoolExecutor</span><span class="p">(</span><span class="n">max_workers</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span> <span class="k">as</span> <span class="n">pool</span><span class="p">:</span>
+<span class="hll">    <span class="n">res</span> <span class="o">=</span> <span class="n">pool</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">f_</span><span class="p">,</span> <span class="n">chunks</span><span class="p">)</span>
+</span><span class="nb">print</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">res</span><span class="p">))</span>
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-0-0-2" class="sphinx-tabs-panel" hidden="true" id="panel-0-0-2" name="0-2" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">concurrent.futures</span><span class="w"> </span><span class="kn">import</span> <span class="n">ProcessPoolExecutor</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">power_n</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">x</span> <span class="o">**</span> <span class="n">n</span>
+
+<span class="k">with</span> <span class="n">ProcessPoolExecutor</span><span class="p">(</span><span class="n">max_workers</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span> <span class="k">as</span> <span class="n">pool</span><span class="p">:</span>
+<span class="hll">    <span class="n">res</span> <span class="o">=</span> <span class="n">pool</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">power_n</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+</span><span class="nb">print</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">res</span><span class="p">))</span>
+</pre></div>
+</div>
+</div></div>
+<div class="admonition-interactive-environments callout admonition" id="callout-0">
+<p class="admonition-title">Interactive environments</p>
+<p>Functionality within multiprocessing requires that the <code class="docutils literal notranslate"><span class="pre">__main__</span></code> module be
+importable by children processes. This means that some functions may not work
+in the interactive interpreter like Jupyter-notebook.</p>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">multiprocessing</span></code> has a number of other methods which can be useful for certain
+use cases, including <code class="docutils literal notranslate"><span class="pre">Process</span></code> and <code class="docutils literal notranslate"><span class="pre">Queue</span></code> which make it possible to have direct
+control over individual processes. Refer to the <a class="reference internal" href="#see-also">See also</a> section below for a list
+of external resources that cover these methods.</p>
+<div class="admonition-multithreading-vs-multiprocessing callout admonition" id="callout-1">
+<p class="admonition-title">multithreading vs multiprocessing</p>
+<p>Both libraries allow Python program to achieve parallelism, multiprocessing
+has a few substantial limitations:
+- overhead due to objects serialization during communication between processes
+- overhead due to spawning a subprocess: ~50 ms while a thread takes ~100 µs
+- some C/C++ libraries only support access from multiple threads</p>
+</div>
+</section>
+</section>
+<section id="exercises">
+<h2>Exercises<a class="headerlink" href="#exercises" title="Link to this heading"></a></h2>
+<div class="admonition-i-o-bounded-process exercise important admonition" id="exercise-0">
+<p class="admonition-title">I/O-bounded process</p>
+<p>In this exercise, we will download Global Forecast System (GFS) weather model data
+directly through NOAA’s real-time NOMADS server.</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-1-1-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-1-1-0" name="1-0" role="tab" tabindex="0">Multithreading</button><button aria-controls="panel-1-1-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-1-1-1" name="1-1" role="tab" tabindex="-1">Multiprocessing</button></div><div aria-labelledby="tab-1-1-0" class="sphinx-tabs-panel" id="panel-1-1-0" name="1-0" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">concurrent.futures</span><span class="w"> </span><span class="kn">import</span> <span class="n">ThreadPoolExecutor</span><span class="p">,</span> <span class="n">as_completed</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
+
+<span class="c1"># Configuration</span>
+<span class="n">MAX_THREADS</span> <span class="o">=</span> <span class="mi">3</span>  <span class="c1"># Adjust based on your connection speed and server limits</span>
+<span class="n">DOWNLOAD_DIR</span> <span class="o">=</span> <span class="s2">&quot;./downloads&quot;</span> <span class="c1"># Directory where to put the files</span>
+
+<span class="c1"># Sample files to download</span>
+<span class="n">FILES_TO_DOWNLOAD</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span>
+        <span class="s2">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;https://nomads.ncep.noaa.gov/pub/data/nccf/com/gfs/prod/gfs.20260817/00/atmos&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;filename&quot;</span><span class="p">:</span> <span class="s2">&quot;gfs.t00z.pgrb2.0p25.f000&quot;</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="s2">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;https://nomads.ncep.noaa.gov/pub/data/nccf/com/gfs/prod/gfs.20260817/00/atmos&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;filename&quot;</span><span class="p">:</span> <span class="s2">&quot;gfs.t00z.pgrb2.0p25.f003&quot;</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="s2">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;https://nomads.ncep.noaa.gov/pub/data/nccf/com/gfs/prod/gfs.20260817/00/atmos&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;filename&quot;</span><span class="p">:</span> <span class="s2">&quot;gfs.t00z.pgrb2.0p25.f006&quot;</span><span class="p">,</span>
+    <span class="p">},</span>
+        <span class="p">{</span>
+        <span class="s2">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;https://nomads.ncep.noaa.gov/pub/data/nccf/com/gfs/prod/gfs.20260817/00/atmos&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;filename&quot;</span><span class="p">:</span> <span class="s2">&quot;gfs.t00z.pgrb2.0p25.f009&quot;</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="s2">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;https://nomads.ncep.noaa.gov/pub/data/nccf/com/gfs/prod/gfs.20260817/00/atmos&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;filename&quot;</span><span class="p">:</span> <span class="s2">&quot;gfs.t00z.pgrb2.0p25.f012&quot;</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="s2">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;https://nomads.ncep.noaa.gov/pub/data/nccf/com/gfs/prod/gfs.20260817/00/atmos&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;filename&quot;</span><span class="p">:</span> <span class="s2">&quot;gfs.t00z.pgrb2.0p25.f015&quot;</span><span class="p">,</span>
+    <span class="p">},</span>
+<span class="p">]</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">download_file</span><span class="p">(</span><span class="n">file_info</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Downloads a single file streaming it in chunks to optimize memory.&quot;&quot;&quot;</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="n">file_info</span><span class="p">[</span><span class="s2">&quot;url&quot;</span><span class="p">]</span>
+    <span class="n">filename</span> <span class="o">=</span> <span class="n">file_info</span><span class="p">[</span><span class="s2">&quot;filename&quot;</span><span class="p">]</span>
+    <span class="n">save_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DOWNLOAD_DIR</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># Stream the download to avoid loading huge files into memory all at once</span>
+        <span class="k">with</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">url</span><span class="p">,</span><span class="n">filename</span><span class="p">),</span> <span class="n">stream</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span> <span class="k">as</span> <span class="n">response</span><span class="p">:</span>
+            <span class="n">response</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>  <span class="c1"># Check for HTTP errors (404, 500, etc.)</span>
+
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">save_path</span><span class="p">,</span> <span class="s2">&quot;wb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">iter_content</span><span class="p">(</span>
+                    <span class="n">chunk_size</span><span class="o">=</span><span class="mi">8192</span>
+                <span class="p">):</span>  <span class="c1"># 8KB chunks</span>
+                    <span class="k">if</span> <span class="n">chunk</span><span class="p">:</span>
+                        <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">chunk</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;Successfully downloaded: </span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="s2">&quot;</span>
+
+    <span class="k">except</span> <span class="n">requests</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">RequestException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;Failed to download </span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="s2">. Error: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;An unexpected error occurred for </span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span>
+    <span class="c1"># Ensure destination directory exists</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">DOWNLOAD_DIR</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span>
+        <span class="sa">f</span><span class="s2">&quot;Starting download of </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">FILES_TO_DOWNLOAD</span><span class="p">)</span><span class="si">}</span><span class="s2"> files using </span><span class="si">{</span><span class="n">MAX_THREADS</span><span class="si">}</span><span class="s2"> threads...</span><span class="se">\n</span><span class="s2">&quot;</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Use ThreadPoolExecutor to handle concurrent downloads</span>
+    <span class="k">with</span> <span class="n">ThreadPoolExecutor</span><span class="p">(</span><span class="n">max_workers</span><span class="o">=</span><span class="n">MAX_THREADS</span><span class="p">)</span> <span class="k">as</span> <span class="n">executor</span><span class="p">:</span>
+        <span class="c1"># Submit all tasks to the executor</span>
+        <span class="n">future_to_url</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="n">executor</span><span class="o">.</span><span class="n">submit</span><span class="p">(</span><span class="n">download_file</span><span class="p">,</span> <span class="n">file</span><span class="p">):</span> <span class="n">file</span>
+            <span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">FILES_TO_DOWNLOAD</span>
+        <span class="p">}</span>
+
+        <span class="c1"># Process results as they finish</span>
+        <span class="k">for</span> <span class="n">future</span> <span class="ow">in</span> <span class="n">as_completed</span><span class="p">(</span><span class="n">future_to_url</span><span class="p">):</span>
+            <span class="n">result_message</span> <span class="o">=</span> <span class="n">future</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">result_message</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">All download processes completed.&quot;</span><span class="p">)</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-1-1-1" class="sphinx-tabs-panel" hidden="true" id="panel-1-1-1" name="1-1" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">concurrent.futures</span><span class="w"> </span><span class="kn">import</span> <span class="n">ThreadPoolExecutor</span><span class="p">,</span> <span class="n">as_completed</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
+
+<span class="c1"># Configuration</span>
+<span class="n">MAX_THREADS</span> <span class="o">=</span> <span class="mi">3</span>  <span class="c1"># Adjust based on your connection speed and server limits</span>
+<span class="n">DOWNLOAD_DIR</span> <span class="o">=</span> <span class="s2">&quot;./downloads&quot;</span>
+
+<span class="c1"># Sample files to download (Replace these URLs with your actual file targets)</span>
+<span class="n">FILES_TO_DOWNLOAD</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span>
+        <span class="s2">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;https://nomads.ncep.noaa.gov/pub/data/nccf/com/gfs/prod/gfs.20260817/00/atmos&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;filename&quot;</span><span class="p">:</span> <span class="s2">&quot;gfs.t00z.pgrb2.0p25.f000&quot;</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="s2">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;https://nomads.ncep.noaa.gov/pub/data/nccf/com/gfs/prod/gfs.20260817/00/atmos&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;filename&quot;</span><span class="p">:</span> <span class="s2">&quot;gfs.t00z.pgrb2.0p25.f003&quot;</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="s2">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;https://nomads.ncep.noaa.gov/pub/data/nccf/com/gfs/prod/gfs.20260817/00/atmos&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;filename&quot;</span><span class="p">:</span> <span class="s2">&quot;gfs.t00z.pgrb2.0p25.f006&quot;</span><span class="p">,</span>
+    <span class="p">},</span>
+        <span class="p">{</span>
+        <span class="s2">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;https://nomads.ncep.noaa.gov/pub/data/nccf/com/gfs/prod/gfs.20260817/00/atmos&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;filename&quot;</span><span class="p">:</span> <span class="s2">&quot;gfs.t00z.pgrb2.0p25.f009&quot;</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="s2">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;https://nomads.ncep.noaa.gov/pub/data/nccf/com/gfs/prod/gfs.20260817/00/atmos&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;filename&quot;</span><span class="p">:</span> <span class="s2">&quot;gfs.t00z.pgrb2.0p25.f012&quot;</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="s2">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;https://nomads.ncep.noaa.gov/pub/data/nccf/com/gfs/prod/gfs.20260817/00/atmos&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;filename&quot;</span><span class="p">:</span> <span class="s2">&quot;gfs.t00z.pgrb2.0p25.f015&quot;</span><span class="p">,</span>
+    <span class="p">},</span>
+        <span class="p">{</span>
+        <span class="s2">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;https://nomads.ncep.noaa.gov/pub/data/nccf/com/gfs/prod/gfs.20260817/00/atmos&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;filename&quot;</span><span class="p">:</span> <span class="s2">&quot;gfs.t00z.pgrb2.0p25.f018&quot;</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="s2">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;https://nomads.ncep.noaa.gov/pub/data/nccf/com/gfs/prod/gfs.20260817/00/atmos&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;filename&quot;</span><span class="p">:</span> <span class="s2">&quot;gfs.t00z.pgrb2.0p25.f021&quot;</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="s2">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;https://nomads.ncep.noaa.gov/pub/data/nccf/com/gfs/prod/gfs.20260817/00/atmos&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;filename&quot;</span><span class="p">:</span> <span class="s2">&quot;gfs.t00z.pgrb2.0p25.f024&quot;</span><span class="p">,</span>
+    <span class="p">},</span>
+        <span class="p">{</span>
+        <span class="s2">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;https://nomads.ncep.noaa.gov/pub/data/nccf/com/gfs/prod/gfs.20260817/00/atmos&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;filename&quot;</span><span class="p">:</span> <span class="s2">&quot;gfs.t00z.pgrb2.0p25.f027&quot;</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="s2">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;https://nomads.ncep.noaa.gov/pub/data/nccf/com/gfs/prod/gfs.20260817/00/atmos&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;filename&quot;</span><span class="p">:</span> <span class="s2">&quot;gfs.t00z.pgrb2.0p25.f030&quot;</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="s2">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;https://nomads.ncep.noaa.gov/pub/data/nccf/com/gfs/prod/gfs.20260817/00/atmos&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;filename&quot;</span><span class="p">:</span> <span class="s2">&quot;gfs.t00z.pgrb2.0p25.f033&quot;</span><span class="p">,</span>
+    <span class="p">},</span>
+<span class="p">]</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">download_file</span><span class="p">(</span><span class="n">file_info</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Downloads a single file streaming it in chunks to optimize memory.&quot;&quot;&quot;</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="n">file_info</span><span class="p">[</span><span class="s2">&quot;url&quot;</span><span class="p">]</span>
+    <span class="n">filename</span> <span class="o">=</span> <span class="n">file_info</span><span class="p">[</span><span class="s2">&quot;filename&quot;</span><span class="p">]</span>
+    <span class="n">save_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DOWNLOAD_DIR</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># Stream the download to avoid loading huge files into memory all at once</span>
+        <span class="k">with</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">url</span><span class="p">,</span><span class="n">filename</span><span class="p">),</span> <span class="n">stream</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span> <span class="k">as</span> <span class="n">response</span><span class="p">:</span>
+            <span class="n">response</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>  <span class="c1"># Check for HTTP errors (404, 500, etc.)</span>
+
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">save_path</span><span class="p">,</span> <span class="s2">&quot;wb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">iter_content</span><span class="p">(</span>
+                    <span class="n">chunk_size</span><span class="o">=</span><span class="mi">8192</span>
+                <span class="p">):</span>  <span class="c1"># 8KB chunks</span>
+                    <span class="k">if</span> <span class="n">chunk</span><span class="p">:</span>
+                        <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">chunk</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;Successfully downloaded: </span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="s2">&quot;</span>
+
+    <span class="k">except</span> <span class="n">requests</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">RequestException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;Failed to download </span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="s2">. Error: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;An unexpected error occurred for </span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span>
+    <span class="c1"># Ensure destination directory exists</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">DOWNLOAD_DIR</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span>
+        <span class="sa">f</span><span class="s2">&quot;Starting download of </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">FILES_TO_DOWNLOAD</span><span class="p">)</span><span class="si">}</span><span class="s2"> files using </span><span class="si">{</span><span class="n">MAX_THREADS</span><span class="si">}</span><span class="s2"> threads...</span><span class="se">\n</span><span class="s2">&quot;</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Use ThreadPoolExecutor to handle concurrent downloads</span>
+    <span class="k">with</span> <span class="n">ThreadPoolExecutor</span><span class="p">(</span><span class="n">max_workers</span><span class="o">=</span><span class="n">MAX_THREADS</span><span class="p">)</span> <span class="k">as</span> <span class="n">executor</span><span class="p">:</span>
+        <span class="c1"># Submit all tasks to the executor</span>
+        <span class="n">future_to_url</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="n">executor</span><span class="o">.</span><span class="n">submit</span><span class="p">(</span><span class="n">download_file</span><span class="p">,</span> <span class="n">file</span><span class="p">):</span> <span class="n">file</span>
+            <span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">FILES_TO_DOWNLOAD</span>
+        <span class="p">}</span>
+
+        <span class="c1"># Process results as they finish</span>
+        <span class="k">for</span> <span class="n">future</span> <span class="ow">in</span> <span class="n">as_completed</span><span class="p">(</span><span class="n">future_to_url</span><span class="p">):</span>
+            <span class="n">result_message</span> <span class="o">=</span> <span class="n">future</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">result_message</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">All download processes completed.&quot;</span><span class="p">)</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+</div></div>
+</div>
+<div class="admonition-accessing-duckdb-database exercise important admonition" id="exercise-1">
+<p class="admonition-title">Accessing duckDB database</p>
+<p>In this exercise, we will simultaneously insert into and read from a DuckDB database
+across multiple Python threads.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">duckdb</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">concurrent.futures</span><span class="w"> </span><span class="kn">import</span> <span class="n">ThreadPoolExecutor</span><span class="p">,</span> <span class="n">as_completed</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">threading</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">random</span>
+
+<span class="c1"># ==========================================</span>
+<span class="c1"># 1. Setup Database Connection &amp; Table</span>
+<span class="c1"># ==========================================</span>
+<span class="n">duckdb_con</span> <span class="o">=</span> <span class="n">duckdb</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s1">&#39;my_peristent_db.duckdb&#39;</span><span class="p">)</span>
+
+<span class="n">duckdb_con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    CREATE OR REPLACE TABLE my_inserts (</span>
+<span class="s2">        thread_name VARCHAR,</span>
+<span class="s2">        insert_time TIMESTAMP DEFAULT current_timestamp</span>
+<span class="s2">    )</span>
+<span class="s2">&quot;&quot;&quot;</span><span class="p">)</span>
+
+
+<span class="c1"># ==========================================</span>
+<span class="c1"># 2. Worker Tasks (Writer &amp; Reader)</span>
+<span class="c1"># ==========================================</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">write_task</span><span class="p">(</span><span class="n">duckdb_con</span><span class="p">,</span> <span class="n">task_id</span><span class="p">):</span>
+    <span class="c1"># Create a unique, thread-safe cursor from the main connection</span>
+    <span class="n">local_con</span> <span class="o">=</span> <span class="n">duckdb_con</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+    
+    <span class="c1"># Track the underlying OS thread name alongside the task ID</span>
+    <span class="n">thread_name</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;writer_task_</span><span class="si">{</span><span class="n">task_id</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">threading</span><span class="o">.</span><span class="n">current_thread</span><span class="p">()</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">)&quot;</span>
+    
+    <span class="n">local_con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">        INSERT INTO my_inserts (thread_name) VALUES (?)</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">thread_name</span><span class="p">,))</span>
+    <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;Task </span><span class="si">{</span><span class="n">task_id</span><span class="si">}</span><span class="s2"> successfully inserted data.&quot;</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">read_task</span><span class="p">(</span><span class="n">duckdb_con</span><span class="p">,</span> <span class="n">task_id</span><span class="p">):</span>
+    <span class="c1"># Create a unique, thread-safe cursor from the main connection</span>
+    <span class="n">local_con</span> <span class="o">=</span> <span class="n">duckdb_con</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+    
+    <span class="n">thread_name</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;reader_task_</span><span class="si">{</span><span class="n">task_id</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">threading</span><span class="o">.</span><span class="n">current_thread</span><span class="p">()</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">)&quot;</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="n">local_con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">        SELECT ? AS worker, count(*) AS row_counter, current_timestamp </span>
+<span class="s2">        FROM my_inserts</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">thread_name</span><span class="p">,))</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+    
+    <span class="k">return</span> <span class="n">results</span>
+
+
+<span class="c1"># ==========================================</span>
+<span class="c1"># 3. Queue Tasks and Execute with ThreadPool</span>
+<span class="c1"># ==========================================</span>
+<span class="n">write_task_count</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">read_task_count</span> <span class="o">=</span> <span class="mi">5</span>
+
+<span class="c1"># Prepare the collection of callable functions and their arguments</span>
+<span class="n">tasks</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">write_task_count</span><span class="p">):</span>
+    <span class="n">tasks</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">write_task</span><span class="p">,</span> <span class="p">(</span><span class="n">duckdb_con</span><span class="p">,</span> <span class="n">i</span><span class="p">)))</span>
+
+<span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">read_task_count</span><span class="p">):</span>
+    <span class="n">tasks</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">read_task</span><span class="p">,</span> <span class="p">(</span><span class="n">duckdb_con</span><span class="p">,</span> <span class="n">j</span><span class="p">)))</span>
+
+<span class="c1"># Shuffle tasks to mix reader and writer execution order randomly</span>
+<span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
+<span class="n">random</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">tasks</span><span class="p">)</span>
+
+<span class="c1"># Execute via ThreadPoolExecutor</span>
+<span class="c1"># max_workers can be tuned based on your machine&#39;s hardware capabilities</span>
+<span class="k">with</span> <span class="n">ThreadPoolExecutor</span><span class="p">(</span><span class="n">max_workers</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span> <span class="k">as</span> <span class="n">executor</span><span class="p">:</span>
+    <span class="c1"># Submit all shuffled operations to the thread pool</span>
+    <span class="n">futures</span> <span class="o">=</span> <span class="p">[</span><span class="n">executor</span><span class="o">.</span><span class="n">submit</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">)</span> <span class="k">for</span> <span class="n">func</span><span class="p">,</span> <span class="n">args</span> <span class="ow">in</span> <span class="n">tasks</span><span class="p">]</span>
+    
+    <span class="c1"># Process results dynamically as they complete</span>
+    <span class="k">for</span> <span class="n">future</span> <span class="ow">in</span> <span class="n">as_completed</span><span class="p">(</span><span class="n">futures</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="n">future</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+            <span class="c1"># If it&#39;s a reader task (returns a list), print it out</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Reader Result: </span><span class="si">{</span><span class="n">result</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;A task generated an exception: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+
+<span class="c1"># ==========================================</span>
+<span class="c1"># 4. Show Final Results</span>
+<span class="c1"># ==========================================</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">--- Final Database Contents ---&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">duckdb_con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;SELECT * FROM my_inserts ORDER BY insert_time&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">df</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="admonition-copernicus-data-analysis exercise important admonition" id="exercise-2">
+<p class="admonition-title">Copernicus data analysis</p>
+<p>In this exercise, we will download climate model data from
+Climate Data Store using their API, and further calculate XXXXXXXXXXX index based on the data.</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-2-2-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-2-2-0" name="2-0" role="tab" tabindex="0">Multithreading</button><button aria-controls="panel-2-2-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-2-2-1" name="2-1" role="tab" tabindex="-1">Multiprocessing</button></div><div aria-labelledby="tab-2-2-0" class="sphinx-tabs-panel" id="panel-2-2-0" name="2-0" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">cdsapi</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">concurrent.futures</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+
+<span class="c1"># Initialize the Climate Data Store client</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">cdsapi</span><span class="o">.</span><span class="n">Client</span><span class="p">()</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">download_era5_daily_avg</span><span class="p">(</span><span class="n">year</span><span class="p">,</span> <span class="n">month</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Worker function to download daily average 2m temperature for a specific month/year.&quot;&quot;&quot;</span>
+    <span class="c1"># Ensure two-digit month format (e.g., &#39;05&#39; instead of &#39;5&#39;)</span>
+    <span class="n">month_str</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">month</span><span class="si">:</span><span class="s2">02d</span><span class="si">}</span><span class="s2">&quot;</span>
+    <span class="n">output_filename</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;era5_daily_mean_t2m_</span><span class="si">{</span><span class="n">year</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">month_str</span><span class="si">}</span><span class="s2">.nc&quot;</span>
+    
+    <span class="c1"># Skip download if the file already exists</span>
+    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">output_filename</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;File </span><span class="si">{</span><span class="n">output_filename</span><span class="si">}</span><span class="s2"> already exists. Skipping.&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">output_filename</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Submitting request for </span><span class="si">{</span><span class="n">year</span><span class="si">}</span><span class="s2">-</span><span class="si">{</span><span class="n">month_str</span><span class="si">}</span><span class="s2">...&quot;</span><span class="p">)</span>
+    
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># Request configuration targeting the post-processed daily statistics dataset</span>
+        <span class="n">c</span><span class="o">.</span><span class="n">retrieve</span><span class="p">(</span>
+            <span class="s1">&#39;derived-era5-single-levels-daily-statistics&#39;</span><span class="p">,</span>
+            <span class="p">{</span>
+                <span class="s1">&#39;product_type&#39;</span><span class="p">:</span> <span class="s1">&#39;reanalysis&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;variable&#39;</span><span class="p">:</span> <span class="s1">&#39;2m_temperature&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;daily_statistic&#39;</span><span class="p">:</span> <span class="s1">&#39;daily_mean&#39;</span><span class="p">,</span>           <span class="c1"># Requests the pre-calculated daily average</span>
+                <span class="s1">&#39;time_zone&#39;</span><span class="p">:</span> <span class="s1">&#39;utc+00:00&#39;</span><span class="p">,</span>                  <span class="c1"># Calculate average based on UTC day boundary</span>
+                <span class="s1">&#39;frequency&#39;</span><span class="p">:</span> <span class="s1">&#39;1_hour&#39;</span><span class="p">,</span>                     <span class="c1"># Use all 24 hourly steps to calculate the mean</span>
+                <span class="s1">&#39;year&#39;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">year</span><span class="p">),</span>
+                <span class="s1">&#39;month&#39;</span><span class="p">:</span> <span class="n">month_str</span><span class="p">,</span>
+                <span class="s1">&#39;day&#39;</span><span class="p">:</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">d</span><span class="si">:</span><span class="s2">02d</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">32</span><span class="p">)],</span> <span class="c1"># Includes all valid days of the month</span>
+                <span class="s1">&#39;format&#39;</span><span class="p">:</span> <span class="s1">&#39;netcdf&#39;</span><span class="p">,</span>
+            <span class="p">},</span>
+            <span class="n">output_filename</span>
+        <span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Successfully downloaded: </span><span class="si">{</span><span class="n">output_filename</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">output_filename</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error downloading </span><span class="si">{</span><span class="n">year</span><span class="si">}</span><span class="s2">-</span><span class="si">{</span><span class="n">month_str</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">None</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span>
+    <span class="c1"># Define your temporal target scope</span>
+    <span class="n">target_years</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2023</span><span class="p">,</span> <span class="mi">2024</span><span class="p">,</span> <span class="mi">2025</span><span class="p">]</span>
+    <span class="n">months</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">13</span><span class="p">))</span> <span class="c1"># Months 1 through 12</span>
+    
+    <span class="c1"># Create a list of task tuples: (year, month)</span>
+    <span class="n">download_tasks</span> <span class="o">=</span> <span class="p">[(</span><span class="n">y</span><span class="p">,</span> <span class="n">m</span><span class="p">)</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">target_years</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">months</span><span class="p">]</span>
+    
+    <span class="c1"># Setting max_workers to 2 keeps the requests flowing perfectly into the server queue</span>
+    <span class="n">MAX_CONCURRENT_REQUESTS</span> <span class="o">=</span> <span class="mi">2</span>
+    
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Starting parallel download for </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">download_tasks</span><span class="p">)</span><span class="si">}</span><span class="s2"> month-long blocks...&quot;</span><span class="p">)</span>
+    
+    <span class="k">with</span> <span class="n">concurrent</span><span class="o">.</span><span class="n">futures</span><span class="o">.</span><span class="n">ThreadPoolExecutor</span><span class="p">(</span><span class="n">max_workers</span><span class="o">=</span><span class="n">MAX_CONCURRENT_REQUESTS</span><span class="p">)</span> <span class="k">as</span> <span class="n">executor</span><span class="p">:</span>
+        <span class="c1"># Pass the task arguments into the parallel executor</span>
+        <span class="n">futures</span> <span class="o">=</span> <span class="p">[</span><span class="n">executor</span><span class="o">.</span><span class="n">submit</span><span class="p">(</span><span class="n">download_era5_daily_avg</span><span class="p">,</span> <span class="n">year</span><span class="p">,</span> <span class="n">month</span><span class="p">)</span> <span class="k">for</span> <span class="n">year</span><span class="p">,</span> <span class="n">month</span> <span class="ow">in</span> <span class="n">download_tasks</span><span class="p">]</span>
+        
+        <span class="c1"># Monitor threads as they wrap up</span>
+        <span class="k">for</span> <span class="n">future</span> <span class="ow">in</span> <span class="n">concurrent</span><span class="o">.</span><span class="n">futures</span><span class="o">.</span><span class="n">as_completed</span><span class="p">(</span><span class="n">futures</span><span class="p">):</span>
+            <span class="n">future</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+        
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;All parallel daily-average downloads have finished.&quot;</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-2-2-1" class="sphinx-tabs-panel" hidden="true" id="panel-2-2-1" name="2-1" role="tabpanel" tabindex="0"></div></div>
+</div>
+<div class="admonition-race-condition exercise important admonition" id="exercise-3">
+<p class="admonition-title">Race condition</p>
+<p>Race condition is considered a common issue for multi-threading/processing applications,
+which occurs when two or more threads attempt to access the shared data and
+try to modify it at the same time. Try to run the example using different number <code class="docutils literal notranslate"><span class="pre">n</span></code> to see the differences.
+Think about how we can solve this problem.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">concurrent.futures</span><span class="w"> </span><span class="kn">import</span> <span class="n">ThreadPoolExecutor</span><span class="p">,</span> <span class="n">ProcessPoolExecutor</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">multiprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Value</span>
+
+<span class="c1"># define a function to increment the value by 1</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">inc</span><span class="p">(</span><span class="n">i</span><span class="p">):</span>
+    <span class="n">val</span><span class="o">.</span><span class="n">value</span> <span class="o">+=</span> <span class="mi">1</span>
+
+<span class="c1"># using a large number to see the problem</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">100000</span>
+
+<span class="c1"># create a shared data and initialize it to 0</span>
+<span class="n">val</span> <span class="o">=</span> <span class="n">Value</span><span class="p">(</span><span class="s1">&#39;i&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="k">with</span> <span class="n">ThreadPoolExecutor</span><span class="p">(</span><span class="n">max_workers</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span> <span class="k">as</span> <span class="n">pool</span><span class="p">:</span>
+    <span class="n">pool</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">inc</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">val</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+
+<span class="c1"># create a shared data and initialize it to 0</span>
+<span class="n">val</span> <span class="o">=</span> <span class="n">Value</span><span class="p">(</span><span class="s1">&#39;i&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="k">with</span> <span class="n">ProcessPoolExecutor</span><span class="p">(</span><span class="n">max_workers</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span> <span class="k">as</span> <span class="n">pool</span><span class="p">:</span>
+    <span class="n">pool</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">inc</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">val</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition-solution solution important dropdown admonition" id="solution-0">
+<p class="admonition-title">Solution</p>
+<ul class="simple">
+<li><p>locking resources: explicitly using locks</p></li>
+<li><p>duplicating resources: making copys of data to each threads/processes so that they do not need to share</p></li>
+</ul>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-3-3-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-3-3-0" name="3-0" role="tab" tabindex="0">locking</button><button aria-controls="panel-3-3-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-3-3-1" name="3-1" role="tab" tabindex="-1">duplicating</button></div><div aria-labelledby="tab-3-3-0" class="sphinx-tabs-panel" id="panel-3-3-0" name="3-0" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">concurrent.futures</span><span class="w"> </span><span class="kn">import</span> <span class="n">ThreadPoolExecutor</span><span class="p">,</span> <span class="n">ProcessPoolExecutor</span>
+<span class="hll"><span class="kn">from</span><span class="w"> </span><span class="nn">multiprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Value</span><span class="p">,</span> <span class="n">Lock</span>
+</span>
+<span class="hll"><span class="n">lock</span> <span class="o">=</span> <span class="n">Lock</span><span class="p">()</span>
+</span>
+<span class="c1"># adding lock</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">inc</span><span class="p">(</span><span class="n">i</span><span class="p">):</span>
+<span class="hll">    <span class="n">lock</span><span class="o">.</span><span class="n">acquire</span><span class="p">()</span>
+</span>    <span class="n">val</span><span class="o">.</span><span class="n">value</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="hll">    <span class="n">lock</span><span class="o">.</span><span class="n">release</span><span class="p">()</span>
+</span>
+
+<span class="c1"># define a large number</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">100000</span>
+
+<span class="c1"># create a shared data and initialize it to 0</span>
+<span class="n">val</span> <span class="o">=</span> <span class="n">Value</span><span class="p">(</span><span class="s1">&#39;i&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="k">with</span> <span class="n">ThreadPoolExecutor</span><span class="p">(</span><span class="n">max_workers</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span> <span class="k">as</span> <span class="n">pool</span><span class="p">:</span>
+    <span class="n">pool</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">inc</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">val</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+
+<span class="c1"># create a shared data and initialize it to 0</span>
+<span class="n">val</span> <span class="o">=</span> <span class="n">Value</span><span class="p">(</span><span class="s1">&#39;i&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="k">with</span> <span class="n">ProcessPoolExecutor</span><span class="p">(</span><span class="n">max_workers</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span> <span class="k">as</span> <span class="n">pool</span><span class="p">:</span>
+    <span class="n">pool</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">inc</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">val</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-3-3-1" class="sphinx-tabs-panel" hidden="true" id="panel-3-3-1" name="3-1" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">concurrent.futures</span><span class="w"> </span><span class="kn">import</span> <span class="n">ProcessPoolExecutor</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">multiprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Array</span>
+
+
+<span class="c1"># define a function to increment the value by 1</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">inc</span><span class="p">(</span><span class="n">i</span><span class="p">):</span>
+    <span class="n">ind</span> <span class="o">=</span> <span class="n">mp</span><span class="o">.</span><span class="n">current_process</span><span class="p">()</span><span class="o">.</span><span class="n">ident</span> <span class="o">%</span> <span class="mi">4</span>
+    <span class="n">arr</span><span class="p">[</span><span class="n">ind</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+
+<span class="c1"># define a large number</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">100000</span>
+
+<span class="c1"># create a shared data and initialize it to 0</span>
+<span class="n">arr</span> <span class="o">=</span> <span class="n">Array</span><span class="p">(</span><span class="s1">&#39;i&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mi">4</span><span class="p">)</span>
+<span class="k">with</span> <span class="n">ProcessPoolExecutor</span><span class="p">(</span><span class="n">max_workers</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span> <span class="k">as</span> <span class="n">pool</span><span class="p">:</span>
+    <span class="n">pool</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">inc</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">arr</span><span class="p">[:],</span><span class="nb">sum</span><span class="p">(</span><span class="n">arr</span><span class="p">))</span>
+</pre></div>
+</div>
+</div></div>
+</div>
+</div>
+<div class="admonition-compute-numerical-integrals exercise important admonition" id="exercise-4">
+<p class="admonition-title">Compute numerical integrals</p>
+<p>The primary objective of this exercise is to compute integrals <span class="math notranslate nohighlight">\(\int_0^1 x^{3/2} \, dx\)</span> numerically.
+One approach to integration is by establishing a grid along the x-axis. Specifically, the integration range
+is divided into ‘n’ segments or bins. Below is a basic serial code.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+
+<span class="c1"># Grid size</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">100000000</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">integration_serial</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="n">h</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="nb">float</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+    <span class="n">mysum</span> <span class="o">=</span> <span class="mf">0.0</span>
+    
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">h</span> <span class="o">*</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mf">0.5</span><span class="p">)</span>
+        <span class="n">mysum</span> <span class="o">+=</span> <span class="n">x</span> <span class="o">**</span> <span class="p">(</span><span class="mi">3</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">h</span> <span class="o">*</span> <span class="n">mysum</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">starttime</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="n">integral</span> <span class="o">=</span> <span class="n">integration_serial</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+    <span class="n">endtime</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Integral value is </span><span class="si">%e</span><span class="s2">, Error is </span><span class="si">%e</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">integral</span><span class="p">,</span> <span class="nb">abs</span><span class="p">(</span><span class="n">integral</span> <span class="o">-</span> <span class="mi">2</span><span class="o">/</span><span class="mi">5</span><span class="p">)))</span>  <span class="c1"># The correct integral value is 2/5</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Time spent: </span><span class="si">%.2f</span><span class="s2"> sec&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">endtime</span><span class="o">-</span><span class="n">starttime</span><span class="p">))</span>
+
+<span class="c1"># 13.63 sec</span>
+</pre></div>
+</div>
+<p>Think about how to parallelize the code using multithreading and multiprocessing.</p>
+<div class="admonition-full-source-code solution important dropdown admonition" id="solution-1">
+<p class="admonition-title">Full source code</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">concurrent.futures</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+
+<span class="c1"># Grid size</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">100000000</span>
+<span class="c1"># Number of threads</span>
+<span class="n">numthreads</span> <span class="o">=</span> <span class="mi">4</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">integration_concurrent</span><span class="p">(</span><span class="n">threadindex</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="n">n</span><span class="p">,</span> <span class="n">numthreads</span><span class="o">=</span><span class="n">numthreads</span><span class="p">):</span>
+    <span class="n">h</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="nb">float</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>  
+    <span class="n">mysum</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="n">workload</span> <span class="o">=</span> <span class="n">n</span><span class="o">/</span><span class="n">numthreads</span>
+    <span class="n">begin</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">workload</span><span class="o">*</span><span class="n">threadindex</span><span class="p">)</span>
+    <span class="n">end</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">workload</span><span class="o">*</span><span class="p">(</span><span class="n">threadindex</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+    
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">begin</span><span class="p">,</span> <span class="n">end</span><span class="p">):</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">h</span> <span class="o">*</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mf">0.5</span><span class="p">)</span>
+        <span class="n">mysum</span> <span class="o">+=</span> <span class="n">x</span> <span class="o">**</span> <span class="p">(</span><span class="mi">3</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">h</span> <span class="o">*</span> <span class="n">mysum</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Using </span><span class="si">{</span><span class="n">numthreads</span><span class="si">}</span><span class="s2"> threads&quot;</span><span class="p">)</span>
+    <span class="n">starttime</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+
+    <span class="k">with</span> <span class="n">concurrent</span><span class="o">.</span><span class="n">futures</span><span class="o">.</span><span class="n">ThreadPoolExecutor</span><span class="p">(</span><span class="n">max_workers</span><span class="o">=</span><span class="n">numthreads</span><span class="p">)</span> <span class="k">as</span> <span class="n">executor</span><span class="p">:</span>
+        <span class="n">partial_integrals</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">executor</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">integration_concurrent</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="n">numthreads</span><span class="p">)))</span>
+
+    <span class="n">integral</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">partial_integrals</span><span class="p">)</span>
+    <span class="n">endtime</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Integral value is </span><span class="si">%e</span><span class="s2">, Error is </span><span class="si">%e</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">integral</span><span class="p">,</span> <span class="nb">abs</span><span class="p">(</span><span class="n">integral</span> <span class="o">-</span> <span class="mi">2</span><span class="o">/</span><span class="mi">5</span><span class="p">)))</span>  <span class="c1"># The correct integral value is 2/5</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Time spent: </span><span class="si">%.2f</span><span class="s2"> sec&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">endtime</span><span class="o">-</span><span class="n">starttime</span><span class="p">))</span>
+
+
+<span class="c1"># 50.17 sec </span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">multiprocessing</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">mp</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+
+<span class="c1"># Grid size</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">100000000</span>
+<span class="n">nprocs</span> <span class="o">=</span> <span class="mi">4</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">integration_process</span><span class="p">(</span><span class="n">pool_index</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">numprocesses</span><span class="p">):</span>
+    <span class="n">h</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="nb">float</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>  
+    <span class="n">mysum</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="n">workload</span> <span class="o">=</span> <span class="n">n</span> <span class="o">/</span> <span class="n">numprocesses</span>
+
+    <span class="n">begin</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">workload</span> <span class="o">*</span> <span class="n">pool_index</span><span class="p">)</span>
+    <span class="n">end</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">workload</span> <span class="o">*</span> <span class="p">(</span><span class="n">pool_index</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
+    
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">begin</span><span class="p">,</span> <span class="n">end</span><span class="p">):</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">h</span> <span class="o">*</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mf">0.5</span><span class="p">)</span>
+        <span class="n">mysum</span> <span class="o">+=</span> <span class="n">x</span> <span class="o">**</span> <span class="p">(</span><span class="mi">3</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">h</span> <span class="o">*</span> <span class="n">mysum</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Using </span><span class="si">{</span><span class="n">nprocs</span><span class="si">}</span><span class="s2"> processes&quot;</span><span class="p">)</span>
+
+    <span class="n">starttime</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+
+    <span class="k">with</span> <span class="n">mp</span><span class="o">.</span><span class="n">Pool</span><span class="p">(</span><span class="n">processes</span><span class="o">=</span><span class="n">nprocs</span><span class="p">)</span> <span class="k">as</span> <span class="n">pool</span><span class="p">:</span>
+        <span class="n">partial_integrals</span> <span class="o">=</span> <span class="n">pool</span><span class="o">.</span><span class="n">starmap</span><span class="p">(</span><span class="n">integration_process</span><span class="p">,</span> <span class="p">[(</span><span class="n">i</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">nprocs</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nprocs</span><span class="p">)])</span>
+
+    <span class="n">integral</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">partial_integrals</span><span class="p">)</span>
+    <span class="n">endtime</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Integral value is </span><span class="si">%e</span><span class="s2">, Error is </span><span class="si">%e</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">integral</span><span class="p">,</span> <span class="nb">abs</span><span class="p">(</span><span class="n">integral</span> <span class="o">-</span> <span class="mi">2</span><span class="o">/</span><span class="mi">5</span><span class="p">)))</span>  <span class="c1"># The correct integral value is 2/5</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Time spent: </span><span class="si">%.2f</span><span class="s2"> sec&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">endtime</span> <span class="o">-</span> <span class="n">starttime</span><span class="p">))</span>
+
+<span class="c1"># 3.53 sec</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="see-also">
+<span id="id2"></span><h2>See also<a class="headerlink" href="#see-also" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://wiki.python.org/moin/GlobalInterpreterLock">More on the global interpreter lock</a></p></li>
+<li><p><a class="reference external" href="https://realpython.com/python-concurrency/">RealPython concurrency overview</a></p></li>
+<li><p><a class="reference external" href="https://realpython.com/intro-to-python-threading/">RealPython threading tutorial</a></p></li>
+<li><p>Parallel programming in Python with multiprocessing,
+<a class="reference external" href="https://www.kth.se/blogs/pdc/2019/02/parallel-programming-in-python-multiprocessing-part-1/">part 1</a>
+and <a class="reference external" href="https://www.kth.se/blogs/pdc/2019/03/parallel-programming-in-python-multiprocessing-part-2/">part 2</a></p></li>
+<li><p>Parallel programming in Python with mpi4py, <a class="reference external" href="https://www.kth.se/blogs/pdc/2019/08/parallel-programming-in-python-mpi4py-part-1/">part 1</a>
+and <a class="reference external" href="https://www.kth.se/blogs/pdc/2019/11/parallel-programming-in-python-mpi4py-part-2/">part 2</a></p></li>
+<li><p><a class="reference external" href="https://ipyparallel.readthedocs.io/en/latest/">ipyparallel documentation</a></p></li>
+<li><p><a class="reference external" href="https://blog.jupyter.org/ipython-parallel-in-2021-2945985c032a">IPython Parallel in 2021</a></p></li>
+<li><p><a class="reference external" href="https://github.com/DaanVanHauwermeiren/ipyparallel-tutorial">ipyparallel tutorial</a></p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/howto/free-threading-python.html">Document on Python support for free threading</a></p></li>
+</ul>
+<div class="admonition-keypoints keypoints admonition" id="keypoints-0">
+<p class="admonition-title">Keypoints</p>
+<ul class="simple">
+<li><p>Beaware of GIL and its impact on performance</p></li>
+<li><p>Use threads for I/O-bound tasks and multiprocessing for compute-bound tasks</p></li>
+<li><p>Make it right before trying to make it fast</p></li>
+</ul>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../stack/" class="btn btn-neutral float-left" title="Efficient Array Computing" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../optimization/" class="btn btn-neutral float-right" title="Benchmarking, profiling and optimizing" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, ENCCS and individual contributors..</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
