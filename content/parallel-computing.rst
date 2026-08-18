@@ -124,8 +124,8 @@ However, multithreading is still relevant in two situations:
 - Multithreading can be useful for running *multiple I/O-bound tasks simultaneously*.
 
 
-Multithreaded I/O
-^^^^^^^^^^^^^^^^^
+Multithreaded
+^^^^^^^^^^^^^
 
 This is how an I/O-bound application might look:
 
