@@ -110,6 +110,7 @@ programs designed with threading in mind will run faster on multi-core hardware.
    to protect shared, mutable state in the code to ensure logical correctness.
    Race conditions that once were theoretical may happen now.
 
+
 Multithreading
 --------------
 
