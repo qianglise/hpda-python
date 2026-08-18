@@ -36,7 +36,7 @@ roughly catergorized into the following modes:
 
 - **Distributed memory parallelism (multiprocessing):** 
 
-  - Different processes manage their own memory segments
+  - Different processes manage their own memory segments and python interpreter
   - Different processes share data by communicating e.g. using Message Passing Interface when needed
 
 
@@ -227,10 +227,17 @@ use cases, including ``Process`` and ``Queue`` which make it possible to have di
 control over individual processes. Refer to the `See also`_ section below for a list 
 of external resources that cover these methods.
 
-At the end of this episode you can turn your attention back to the word-count problem 
-and practice using ``multiprocessing`` pools of processes.
+
+.. callout:: multithreading vs multiprocessing
+
+   Both libraries allow Python program to achieve parallelism, multiprocessing
+   has a few substantial limitations:
+   - overhead due to objects serialization during communication between processes
+   - overhead due to spawning a subprocess: ~50 ms while a thread takes ~100 µs
+   - some C/C++ libraries only support access from multiple threads
 
 
+   
 Exercises
 ---------
 
@@ -253,7 +260,7 @@ Exercises
 
 
 
-.. exercise:: Database
+.. exercise:: Accessing duckDB database
 
    In this exercise, we will simultaneously insert into and read from a DuckDB database
    across multiple Python threads.
@@ -262,18 +269,23 @@ Exercises
       :language: python
 
 
-.. exercise:: I/O-bound vs CPU-bound
 
-   In this exercise, we will simulate an I/O-bound process uing the :meth:`sleep` function. 
-   Typical I/O-bounded processes are disk accesses, network requests etc.
+.. exercise:: Copernicus data analysis
 
-   .. literalinclude:: example/io_bound.py
-      :language: python
+   In this exercise, we will download climate model data from
+   Climate Data Store using their API, and further calculate index based on the data.
 
-   When the problem is compute intensive:
+   .. tabs::
+ 
+      .. tab:: Multithreading
 
-   .. literalinclude:: example/cpu_bound.py
-      :language: python
+         .. literalinclude:: example/download_cds_mt.py
+	    :language: python
+
+      .. tab:: Multiprocessing
+	       
+	 .. literalinclude:: example/download_cds_mp.py
+            :language: python
 
 
 .. exercise:: Race condition
