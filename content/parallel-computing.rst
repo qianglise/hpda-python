@@ -350,7 +350,7 @@ See also
 - `ipyparallel documentation <https://ipyparallel.readthedocs.io/en/latest/>`__
 - `IPython Parallel in 2021 <https://blog.jupyter.org/ipython-parallel-in-2021-2945985c032a>`__
 - `ipyparallel tutorial <https://github.com/DaanVanHauwermeiren/ipyparallel-tutorial>`__
-- Document on Python support for free threading `https://docs.python.org/3/howto/free-threading-python.html>`__
+- `Document on Python support for free threading <https://docs.python.org/3/howto/free-threading-python.html>`__
 
 .. keypoints::
 
