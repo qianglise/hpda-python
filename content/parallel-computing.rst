@@ -91,28 +91,24 @@ programs designed with threading in mind will run faster on multi-core hardware.
 
 .. note::
 
-   While the performance gains are exciting, moving to a GIL-free world requires
-   a shift in mindset and an awareness of the new challenges. The biggest hurdle
-   for the adoption of free-threaded Python is the vast ecosystem of existing packages. 
+   Work is underway across the ecosystem to update packages to support
+   free-threaded Python alongside improvements to thread safety guarantees,
+   testing, and documentation.
+
    Most pure Python code that is already thread-safe should work without modification.
-   However, many C extensions were built with the assumption that the GIL exists,
-   implicitly protecting them from certain types of race conditions. Running these
-   in a free-threaded environment can lead to crashes and data corruption.
-   
+   However, some third-party packages, in particular those extension modules using
+   Python's C API may not be ready for use in a free-threaded build, and will re-enable the GIL.
+   Running these in a free-threaded environment can lead to crashes and data corruption.
+
    The free-threaded build of CPython aims to provide similar thread-safety behavior
    to the default GIL-enabled build. Built-in types like `dict`, `list`, and `set`
    use internal locks to protect against concurrent modifications in ways that
-   behave similarly to the GIL. However, Python has not historically
-   guaranteed specific behavior for concurrent modifications to these built-in types,
-   so this should be treated as a description of the current implementation,
-   not a guarantee of current or future behavior. It's recommended to explicitly use the
+   behave similarly to the GIL. However, there is no guarantee of consistent
+   current or future behavior of buit-in types. It's recommended to explicitly use the
    locking mechanisms (e.g. `threading.Lock` or other synchronization primitives)
    instead of relying on the internal locks of built-in types, whenever possible
    to protect shared, mutable state in the code to ensure logical correctness.
    Race conditions that once were theoretical may happen now.
-
-
-
 
 Multithreading
 --------------
@@ -273,7 +269,7 @@ Exercises
 .. exercise:: Copernicus data analysis
 
    In this exercise, we will download climate model data from
-   Climate Data Store using their API, and further calculate index based on the data.
+   Climate Data Store using their API, and further calculate XXXXXXXXXXX index based on the data.
 
    .. tabs::
  
@@ -353,6 +349,7 @@ See also
 - `ipyparallel documentation <https://ipyparallel.readthedocs.io/en/latest/>`__
 - `IPython Parallel in 2021 <https://blog.jupyter.org/ipython-parallel-in-2021-2945985c032a>`__
 - `ipyparallel tutorial <https://github.com/DaanVanHauwermeiren/ipyparallel-tutorial>`__
+- Document on Python support for free threading `https://docs.python.org/3/howto/free-threading-python.html>`__
 
 .. keypoints::
 
