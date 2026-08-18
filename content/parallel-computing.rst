@@ -234,6 +234,18 @@ and practice using ``multiprocessing`` pools of processes.
 Exercises
 ---------
 
+.. exercise:: I/O-bounded process
+
+   In this exercise, we will download Global Forecast System (GFS) weather model data
+   directly through NOAA's real-time NOMADS server.
+
+   .. literalinclude:: example/download_gfs_mt.py
+      :language: python
+
+   .. literalinclude:: example/download_gfs_mp.py
+      :language: python
+
+
 .. exercise:: I/O-bound vs CPU-bound
 
    In this exercise, we will simulate an I/O-bound process uing the :meth:`sleep` function. 
