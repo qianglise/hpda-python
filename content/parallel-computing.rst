@@ -239,11 +239,17 @@ Exercises
    In this exercise, we will download Global Forecast System (GFS) weather model data
    directly through NOAA's real-time NOMADS server.
 
-   .. literalinclude:: example/download_gfs_mt.py
-      :language: python
+   .. tabs::
+ 
+      .. tab:: Multithreading
 
-   .. literalinclude:: example/download_gfs_mp.py
-      :language: python
+         .. literalinclude:: example/download_gfs_mt.py
+	    :language: python
+
+      .. tab:: Multiprocessing
+	       
+	 .. literalinclude:: example/download_gfs_mp.py
+            :language: python
 
 
 
