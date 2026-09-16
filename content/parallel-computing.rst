@@ -229,8 +229,11 @@ of external resources that cover these methods.
 
    Both libraries allow Python program to achieve parallelism, multiprocessing
    has a few substantial limitations:
+   
    - overhead due to objects serialization during communication between processes
+     
    - overhead due to spawning a subprocess: ~50 ms while a thread takes ~100 µs
+     
    - some C/C++ libraries only support access from multiple threads
 
 
