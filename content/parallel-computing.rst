@@ -141,10 +141,11 @@ The speedup gained from multithreading I/O bound problems can be understood from
 
    NumPy and SciPy are built on external libraries such as LAPACK, FFTW, BLAS,
    which provide optimized routines for linear algebra, Fourier transforms etc.
-   These libraries are written in C, C++ or Fortran and are thus not limited
+   These libraries are written in C/C++ or Fortran and are thus not limited
    by the GIL, so they typically support actual multihreading during the execution.
    It might be a good idea to take advantage of this auto parallelisation,
    particularly on HPC systems.
+   
    Note that the auto-parallelisation of these functions is hardware-dependent,
    so environmental variables and external packages such as threadpoolctl may be needed
    to control the number of threads or specify the processor architecture.
@@ -359,7 +360,6 @@ Exercises
    parallize the code using multithreading or multiprocessing.
 
    .. literalinclude:: exercise/kommun.py  
-
 
    .. solution:: Full source code
 
