@@ -284,7 +284,14 @@ Exercises
       :language: python
 
 
+.. callout:: Thread Safety of duckdb.sql()
 
+   `duckdb.sql()` and `duckdb.connect(':default:')` use a shared global in-memory connection.
+   This connection is not thread-safe, and running queries on it from multiple threads
+   can cause issues. To run DuckDB in parallel, each thread must have its own connection.
+
+
+   
 .. exercise:: Copernicus data analysis
 
    In this exercise, we will download climate model data from
