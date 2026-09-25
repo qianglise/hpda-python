@@ -152,7 +152,7 @@ The speedup gained from multithreading I/O bound problems can be understood from
    
    
 Further details on threading in Python can be found in the **See also** section below.
-
+`See also`_
 
 Multiprocessing
 ---------------
@@ -234,13 +234,9 @@ function, and there are other options as well, see below:
    importable by children processes. This means that some functions may not work 
    in the interactive interpreter like Jupyter-notebook. 
 
-``multiprocessing`` has a number of other methods which can be useful for certain 
-use cases, including ``Process`` and ``Queue`` which make it possible to have direct 
-control over individual processes. Refer to the `See also`_ section below for a list 
-of external resources that cover these methods.
 
 
-.. callout:: multithreading vs multiprocessing
+.. note:: multithreading vs multiprocessing
 
    Both libraries allow Python program to achieve parallelism, multiprocessing
    has a few substantial limitations:
@@ -251,7 +247,10 @@ of external resources that cover these methods.
      
    - some C/C++ libraries only support access from multiple threads
 
-
+   On the other hand, ``multiprocessing`` has a number of other methods which can be useful
+   for certain use cases, including ``Process`` and ``Queue`` which make it possible to have
+   direct control over individual processes. Refer to the `See also`_ section below for a list
+   of external resources that cover these methods.
    
 Exercises
 ---------
@@ -277,8 +276,8 @@ Exercises
 
 .. exercise:: Accessing duckDB database
 
-   In this exercise, we will simultaneously insert into and read from a DuckDB database
-   across multiple Python threads.
+   In this exercise, we will follow the example from offical DuckDB documentation by
+   simultaneously insert into and read from a DuckDB database across multiple Python threads.
 
    .. literalinclude:: example/duckdb_mt.py
       :language: python
@@ -286,9 +285,17 @@ Exercises
 
 .. callout:: Thread Safety of duckdb.sql()
 
+   Note that in the above example it is executed within a single Python process and using
+   the so-called `read-write mode`, which means one process can both read and write to the database.
+   DuckDB supports multiple writer threads using a combination of MVCC (Multi-Version Concurrency Control)
+   and optimistic concurrency control. The reason for this concurrency model is to allow for the caching
+   of data in RAM for faster analytical queries, rather than going back and forth to disk during each query.
+   
    `duckdb.sql()` and `duckdb.connect(':default:')` use a shared global in-memory connection.
    This connection is not thread-safe, and running queries on it from multiple threads
    can cause issues. To run DuckDB in parallel, each thread must have its own connection.
+   This is done by using the `.cursor()` method in the example, which creates a thread-local connection
+   to the same DuckDB file based on the original connection. 
 
 
    
