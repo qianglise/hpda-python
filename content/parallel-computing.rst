@@ -151,8 +151,8 @@ The speedup gained from multithreading I/O bound problems can be understood from
    to control the number of threads or specify the processor architecture.
    
    
-Further details on threading in Python can be found in the **See also** section below.
-`See also`_
+Further details on threading in Python can be found in the `See also`_ section below.
+
 
 Multiprocessing
 ---------------
@@ -236,7 +236,7 @@ function, and there are other options as well, see below:
 
 
 
-.. note:: multithreading vs multiprocessing
+.. note:: 
 
    Both libraries allow Python program to achieve parallelism, multiprocessing
    has a few substantial limitations:
@@ -283,20 +283,23 @@ Exercises
       :language: python
 
 
-.. callout:: Thread Safety of duckdb.sql()
+.. note::
 
    Note that in the above example it is executed within a single Python process and using
-   the so-called `read-write mode`, which means one process can both read and write to the database.
+   the so-called ``read-write mode``, which means one process can both read and write to the database.
    DuckDB supports multiple writer threads using a combination of MVCC (Multi-Version Concurrency Control)
    and optimistic concurrency control. The reason for this concurrency model is to allow for the caching
    of data in RAM for faster analytical queries, rather than going back and forth to disk during each query.
    
-   `duckdb.sql()` and `duckdb.connect(':default:')` use a shared global in-memory connection.
+   ``duckdb.sql()`` and ``duckdb.connect(':default:')`` use a shared global in-memory connection.
    This connection is not thread-safe, and running queries on it from multiple threads
    can cause issues. To run DuckDB in parallel, each thread must have its own connection.
-   This is done by using the `.cursor()` method in the example, which creates a thread-local connection
+   This is done by using the ``.cursor()`` method in the example, which creates a thread-local connection
    to the same DuckDB file based on the original connection. 
 
+   Multiple processes connecting to the same database file is only possible if they are all read-only connections.
+   It is not possible to have a read-write connection and a read-only connection connected to the same database
+   file across multiple processes.
 
    
 .. exercise:: Copernicus data analysis
@@ -317,12 +320,33 @@ Exercises
             :language: python
 
 
+.. exercise:: Multithreading library 
+
+   Here is a piece of code which does a symmetrical matrix inversion of size 4000 by 4000.
+   One can copy and paste or download the file from :download:`here <example/omp_test.py>`.
+
+   .. literalinclude:: example/omp_test.py
+      :language: python
+
+   Let us test it with 1 and 4 threads by setting the enviroment variable ``OMP_NUM_THREADS``:
+
+   .. code-block:: console
+
+      $ export OMP_NUM_THREADS=1
+      $ python omp_test.py
+
+      $ export OMP_NUM_THREADS=4
+      $ python omp_test.py
+
+      
 .. exercise:: Race condition
 
    Race condition is considered a common issue for multi-threading/processing applications, 
-   which occurs when two or more threads attempt to access the shared data and 
-   try to modify it at the same time. Try to run the example using different number ``n`` to see the differences.
-   Think about how we can solve this problem.
+   which occurs when two or more threads attempt to access the shared data and try to modify
+   it at the same time. The following example does nothing but incrementing a counter.
+   Although the operation is very simple, using multi-threading could potentially lead to
+   unpredictable results. Try to run the example using different number ``n`` to see the differences, 
+   and think about how we can solve this problem.
 
 
    .. literalinclude:: example/race.py
@@ -330,7 +354,7 @@ Exercises
 
    .. solution::
 
-      - locking resources: explicitly using locks
+      - locking resources: explicitly using locks so that each thread completes a critical section before another one enters it
       - duplicating resources: making copys of data to each threads/processes so that they do not need to share
 
       .. tabs::
