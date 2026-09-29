@@ -1,38 +1,28 @@
 import os
 from concurrent.futures import ThreadPoolExecutor, as_completed
 import requests
+from datetime import date
 
 # Configuration
 MAX_THREADS = 3  # Adjust based on your connection speed and server limits
 DOWNLOAD_DIR = "./downloads" # Directory where to put the files
 
-# Sample files to download
+# Automatically fetch today's date in YYYYMMDD format (e.g., "20260923")
+TARGET_DATE = date.today().strftime("%Y%m%d")
+
+# Base URL dynamically injects the current date
+BASE_URL = f"https://noaa.gov.{TARGET_DATE}/00/atmos"
+FILENAME_TEMPLATE = "gfs.t00z.pgrb2.0p25.f{:03d}"
+
+# Dynamically generate the list of files to download
 FILES_TO_DOWNLOAD = [
     {
-        "url": "https://nomads.ncep.noaa.gov/pub/data/nccf/com/gfs/prod/gfs.20260817/00/atmos",
-        "filename": "gfs.t00z.pgrb2.0p25.f000",
-    },
-    {
-        "url": "https://nomads.ncep.noaa.gov/pub/data/nccf/com/gfs/prod/gfs.20260817/00/atmos",
-        "filename": "gfs.t00z.pgrb2.0p25.f003",
-    },
-    {
-        "url": "https://nomads.ncep.noaa.gov/pub/data/nccf/com/gfs/prod/gfs.20260817/00/atmos",
-        "filename": "gfs.t00z.pgrb2.0p25.f006",
-    },
-        {
-        "url": "https://nomads.ncep.noaa.gov/pub/data/nccf/com/gfs/prod/gfs.20260817/00/atmos",
-        "filename": "gfs.t00z.pgrb2.0p25.f009",
-    },
-    {
-        "url": "https://nomads.ncep.noaa.gov/pub/data/nccf/com/gfs/prod/gfs.20260817/00/atmos",
-        "filename": "gfs.t00z.pgrb2.0p25.f012",
-    },
-    {
-        "url": "https://nomads.ncep.noaa.gov/pub/data/nccf/com/gfs/prod/gfs.20260817/00/atmos",
-        "filename": "gfs.t00z.pgrb2.0p25.f015",
-    },
+        "url": BASE_URL,
+        "filename": FILENAME_TEMPLATE.format(hour)
+    }
+    for hour in range(0, 16, 3) 
 ]
+
 
 
 def download_file(file_info):
