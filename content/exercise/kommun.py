@@ -5,7 +5,7 @@ from shapely.geometry import Point
 import time
 from concurrent.futures import ThreadPoolExecutor
 
-
+# load data
 points = pd.read_csv("./municipality_se.csv",usecols=["Locality", "Municipality", "County", "Latitude", "Longitude"])
 polygons = gpd.read_file("./kommun_se.geojson")
 
@@ -19,15 +19,23 @@ def check_polygon(polygon_idx):
     # manually loop over all points, check if polygon contains that point
     for i in range(n_points):
         current_point = points.iloc[i, :]
+        # Note: Shapely Point expects (Longitude, Latitude) i.e., (x, y)
         if current_polygon.contains(Point(current_point.Longitude,current_point.Latitude)):
             out_points.append(current_point.Locality)
     return out_points
 
-t_start=time.time()
 
-points_per_polygon = {}
 
-for polygon_idx in range(n_polygons):
-    points_per_polygon[polygon_idx] = check_polygon(polygon_idx)
+if __name__ == "__main__":
+    print(f"Starting with single thread...")
 
-t_end=time.time()
+    t_start=time.time()
+
+    points_per_polygon = {}
+
+    for polygon_idx in range(n_polygons):
+        points_per_polygon[polygon_idx] = check_polygon(polygon_idx)
+
+    t_end=time.time()
+
+    print(f"Finish Processing {n_points} points against {n_polygons} polygons in {t_end - t_start:.2f} seconds.")
