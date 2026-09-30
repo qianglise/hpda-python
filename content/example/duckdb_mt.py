@@ -6,7 +6,7 @@ import random
 # ==========================================
 # 1. Setup Database Connection & Table
 # ==========================================
-duckdb_con = duckdb.connect('my_peristent_db.duckdb')
+duckdb_con = duckdb.connect('my_persistent_db.duckdb')
 
 duckdb_con.execute("""
     CREATE OR REPLACE TABLE my_inserts (
@@ -48,8 +48,8 @@ def read_task(duckdb_con, task_id):
 # ==========================================
 # 3. Queue Tasks and Execute with ThreadPool
 # ==========================================
-write_task_count = 5
-read_task_count = 5
+write_task_count = 500
+read_task_count = 25000
 
 # Prepare the collection of callable functions and their arguments
 tasks = []
@@ -74,9 +74,9 @@ with ThreadPoolExecutor(max_workers=5) as executor:
     for future in as_completed(futures):
         try:
             result = future.result()
-            # If it's a reader task (returns a list), print it out
-            if isinstance(result, list):
-                print(f"Reader Result: {result}")
+            ## If it's a reader task (returns a list), print it out
+            #if isinstance(result, list):
+            #    print(f"Reader Result: {result}")
         except Exception as e:
             print(f"A task generated an exception: {e}")
 
