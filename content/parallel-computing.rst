@@ -302,23 +302,6 @@ Exercises
    file across multiple processes.
 
    
-.. exercise:: Copernicus data analysis
-
-   In this exercise, we will download climate model data from
-   Climate Data Store using their API, and further calculate XXXXXXXXXXX index based on the data.
-
-   .. tabs::
- 
-      .. tab:: Multithreading
-
-         .. literalinclude:: example/download_cds_mt.py
-	    :language: python
-
-      .. tab:: Multiprocessing
-	       
-	 .. literalinclude:: example/download_cds_mp.py
-            :language: python
-
 
 .. exercise:: Multithreading library 
 
